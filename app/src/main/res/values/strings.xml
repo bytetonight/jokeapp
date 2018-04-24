@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Build it Bigger</string>
+    <string name="instructions">Press the button for a delicious paid joke!</string>
+    <string name="button_text">Tell Joke</string>
+    <string name="action_settings">Settings</string>
+    <string name="api_service_error">#*#You shouldn\'t be seeing this !</string>
+    <string name="interbla_not_loaded">The interstitial wasn\'t loaded yet.</string>
+</resources>

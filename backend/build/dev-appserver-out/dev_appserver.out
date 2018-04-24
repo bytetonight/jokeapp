@@ -1,0 +1,27 @@
+Warning: Google App Engine Java 7 runtime is deprecated.
+Warning: See https://cloud.google.com/appengine/docs/deprecations/java7
+Apr 24, 2018 3:09:51 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
+INFORMATION: Overwriting system property key 'java.util.logging.config.file', value 'C:\Users\dns\AppData\Local\Google\Cloud SDK\google-cloud-sdk\platform\google_appengine\google\appengine\tools\java\config\sdk\logging.properties' with value 'WEB-INF/logging.properties' from 'E:\AndroidDeveloperNanodegree\BuildItBigger\backend\build\exploded-backend\WEB-INF\appengine-web.xml'
+Apr 24, 2018 3:09:51 PM com.google.apphosting.utils.jetty.JettyLogger info
+INFORMATION: Logging to JettyLogger(null) via com.google.apphosting.utils.jetty.JettyLogger
+Apr 24, 2018 1:09:52 PM com.google.appengine.tools.development.IsolatedAppClassLoader checkWorkingDirectory
+WARNUNG: Your working directory, (E:\AndroidDeveloperNanodegree\BuildItBigger) is not equal to your 
+web application root (E:\AndroidDeveloperNanodegree\BuildItBigger\backend\build\exploded-backend)
+You will not be able to access files from your working directory on the production server.
+
+Apr 24, 2018 1:09:52 PM com.google.apphosting.utils.jetty.JettyLogger info
+INFORMATION: jetty-6.1.x
+Apr 24, 2018 1:09:55 PM com.google.apphosting.utils.jetty.JettyLogger info
+INFORMATION: Started SelectChannelConnector@localhost:8080
+Apr 24, 2018 1:09:55 PM com.google.appengine.tools.development.AbstractModule startup
+INFORMATION: Module instance default is running at http://localhost:8080/
+Apr 24, 2018 1:09:55 PM com.google.appengine.tools.development.AbstractModule startup
+INFORMATION: The admin console is running at http://localhost:8080/_ah/admin
+Apr 24, 2018 3:09:55 PM com.google.appengine.tools.development.DevAppServerImpl doStart
+INFORMATION: Dev App Server is now running
+Apr 24, 2018 3:10:00 PM com.google.appengine.repackaged.com.google.protobuf.UnsafeUtil supportsUnsafeByteBufferOperations
+WARNUNG: platform method missing - proto runtime falling back to safer methods: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.sun.misc")
+Apr 24, 2018 3:10:00 PM com.google.appengine.repackaged.com.google.protobuf.UnsafeUtil supportsUnsafeArrayOperations
+WARNUNG: platform method missing - proto runtime falling back to safer methods: java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.sun.misc")
+Apr 24, 2018 3:10:02 PM com.google.appengine.tools.development.LocalResourceFileServlet doGet
+WARNUNG: No file found for: /favicon.ico

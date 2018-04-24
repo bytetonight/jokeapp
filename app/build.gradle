@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
+    }
+}
+
+
+
+android {
+    compileSdkVersion 26
+
+
+    defaultConfig {
+        applicationId "com.udacity.gradle.builditbigger"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    // Gradle for Android, video 14 says "when we declare additional flavors, the Android plugin
+    // automatically creates new source sets for us where we can place flavor-specific code and resources"
+    // This is factually incorrect / not up to date
+
+    // Let's create new strings in our free and paid versions so that free and
+    // paid versions display different messages
+    // The easiest way to do this is first of all copy the Helloworld string
+    // then we'll right-click on the app directory ... New > Android Resource File
+    // name the file strings ... here's the interesting part. There IS NO  DROPDOWN TO CHOOSE A SOURCE SET
+
+    // https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html?utm_source=android-studio#flavor_dimensions
+    // Why am I not surprised that the above contains a lot of bla bla but doesn't really help me ?
+    // Why am I not surprised that the below provides a simple solution
+    // https://stackoverflow.com/questions/44105127/android-studio-3-0-flavor-dimension-issue/44105198#44105198
+    def theFlavorDimension = 'aDimensionForTheSakeOfSpecifyingOne'
+    flavorDimensions "$theFlavorDimension"
+
+    // https://developer.android.com/studio/build/build-variants.html
+    productFlavors {
+        free {
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+            dimension "$theFlavorDimension"
+        }
+        paid {
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+            dimension "$theFlavorDimension"
+            minSdkVersion 19
+        }
+    }
+}
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    endpointsServer project(path: ':backend', configuration: 'endpoints')
+
+    // local dependencies
+    implementation project(':libMockJokes')
+    implementation project(':libJokeDisplay')
+
+    // Other dependencies
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibVersion"
+    implementation 'com.google.api-client:google-api-client:1.23.0'
+    implementation 'com.google.http-client:google-http-client-android:1.23.0'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    // ad services only sourced into free version
+    freeImplementation 'com.google.android.gms:play-services-ads:15.0.0'
+
+
+    // Test stuff
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation "com.android.support.test:runner:1.0.1"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.1"
+}
